@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Input Produk Batik</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; line-height: 1.6; }
+        form { max-width: 400px; display: flex; flex-direction: column; gap: 10px; }
+        input, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #007bff; color: white; border: none; padding: 10px; cursor: pointer; }
+        .produk-list { margin-top: 20px; border-top: 2px solid #eee; padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h2>Tambah Produk Baru</h2>
+    <form id="formProduk">
+        <input type="text" id="id" placeholder="ID Produk" required>
+        <input type="text" id="nama" placeholder="Nama Produk" required>
+        <input type="number" id="harga" placeholder="Harga" required>
+        <label>Pilih Foto Produk:</label>
+        <input type="file" id="foto" accept="image/*" required>
+        <textarea id="desc" placeholder="Deskripsi"></textarea>
+        <input type="text" id="pemilik" placeholder="Pemilik">
+        <button type="submit">Simpan Produk</button>
+    </form>
+    
+    <script>
+        const form = document.getElementById('formProduk');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+    
+            // Gunakan FormData untuk mengirim file
+            const formData = new FormData();
+            formData.append('id', document.getElementById('id').value);
+            formData.append('nama', document.getElementById('nama').value);
+            formData.append('harga', document.getElementById('harga').value);
+            formData.append('desc', document.getElementById('desc').value);
+            formData.append('pemilik', document.getElementById('pemilik').value);
+            formData.append('foto', document.getElementById('foto').files[0]);
+    
+            const response = await fetch('/tambah-produk', {
+                method: 'POST',
+                body: formData // Jangan set Header Content-Type, browser akan otomatis mengaturnya
+            });
+    
+            if (response.ok) {
+                alert("Berhasil disimpan!");
+                location.reload(); // Refresh untuk melihat update
+            }
+        });
+    </script>
+    
+
+</body>
+</html>
