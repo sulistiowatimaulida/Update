@@ -48,6 +48,16 @@ let db_produk = [
         ],
         "desc": "Jsksksbd didjd didndd id",
         "pemilik": ""
+    },
+    {
+        "id": "Celana",
+        "nama": "Celana",
+        "harga": 63,
+        "images": [
+            "img/1768421116927-Screenshot_2026-01-14-22-35-37-07_a2cf8efcdd42a8e6f7906303f104fb67.jpg"
+        ],
+        "desc": "Jdjdjd",
+        "pemilik": "Dhdud"
     }
 ];
 
